@@ -3,11 +3,11 @@
 # Sourcing default init scripts from InseeFrLab/sspcloud-init-scripts
 SCRIPT1_URL="https://raw.githubusercontent.com/InseeFrLab/sspcloud-init-scripts/refs/heads/main/vscode/customize-settings.sh"
 
-#
+# To pass it as an argument
 # SCRIPT1_URL=$1
 
 # Download scripts
-curl -s -o "customize-settings.sh" "$SCRIPT1_URL"
+curl --create-dirs --output "customize-settings.sh" "$SCRIPT1_URL"
 
 # Source the scripts
 source "customize-settings.sh"
