@@ -17,7 +17,6 @@ rm "$SCRIPT_DEST"
 # Personnal init commands
 # To use git clone with automated PAT
 git config --global url."https://$GIT_PERSONAL_ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
-git config --global url."https://$GIT_PERSONAL_ACCESS_TOKEN@github.com/".insteadOf "https://www.github.com/"
 
 # To avoid having to set the branch after having created it
 git config --global push.autoSetupRemote true
