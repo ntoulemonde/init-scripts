@@ -1,16 +1,18 @@
 #!/bin/bash
 
 # Sourcing default init scripts from InseeFrLab/sspcloud-init-scripts
-SCRIPT1_URL="https://raw.githubusercontent.com/InseeFrLab/sspcloud-init-scripts/refs/heads/main/vscode/customize-settings.sh"
-
+SCRIPT_URL="https://raw.githubusercontent.com/InseeFrLab/sspcloud-init-scripts/refs/heads/main/vscode/customize-settings.sh"
 # To pass it as an argument
-# SCRIPT1_URL=$1
+# SCRIPT_URL=$1
+
+SCRIPT_DEST="customize-settings.sh"
 
 # Download scripts
-curl --create-dirs --output "customize-settings.sh" "$SCRIPT1_URL"
+curl --create-dirs --output "$SCRIPT_DEST" "$SCRIPT_URL"
 
 # Source the scripts
-source "customize-settings.sh"
+source "$SCRIPT_DEST"
+rm "$SCRIPT_DEST"
 
 # Personnal init commands
 # To use git clone with automated PAT
