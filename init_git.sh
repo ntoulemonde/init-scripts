@@ -17,6 +17,7 @@ rm "$SCRIPT_DEST"
 # Personnal init commands
 # To use git clone with automated PAT
 git config --global url."https://$GIT_PERSONAL_ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
+git config --global url."https://$GIT_PERSONAL_ACCESS_TOKEN@github.com/".insteadOf "https://www.github.com/"
 
 # To avoid having to set the branch after having created it
 git config --global push.autoSetupRemote true
@@ -43,12 +44,7 @@ KEYBINDINGS_FILE="$VSCODE_CONFIG_DIR/keybindings.json"
 # Add shortcuts for duplicating, deleting lines, and navigating tabs
 echo '[
     {
-        "key": "ctrl+shift+d",
-        "command": "editor.action.duplicateSelection"
-    },
-    {
         "key": "ctrl+d",
-        "command": "editor.action.deleteLines",
         "when": "editorTextFocus"
     },
     {
@@ -76,3 +72,14 @@ echo '[
         "command": "workbench.files.action.focusFilesExplorer"
     }
 ]' > "$KEYBINDINGS_FILE"
+
+
+sudo tee -a /etc/bash.bashrc << EOT
+# git aliases
+alias gc='git clone'
+alias gcm='git commit -m'
+alias gs='git status'
+alias gp='git push'
+alias ga='git add'
+
+EOT
