@@ -12,7 +12,8 @@ sudo tee -a /etc/bash.bashrc << EOT
 # git aliases
 alias gc='git clone'
 alias gcm='git commit -m'
-alias gs='git status'
+alias gst='git status'
+alias gsw='git switch'
 alias gp='git push'
 alias ga='git add'
 
