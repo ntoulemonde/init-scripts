@@ -25,7 +25,8 @@ EOT
 
 #!/bin/bash
 
-# This init script updates settings of VSCode. Many example of options are displayed.
+##### Config #####
+
 # See here for the default settings enforced in Onyxia's VSCode-based images : https://github.com/InseeFrLab/images-datascience/blob/main/vscode/settings/User.json
 # Expected parameters : None
 
@@ -45,32 +46,40 @@ if [ ! -f "$SETTINGS_FILE" ]; then
     echo "{}" > "$SETTINGS_FILE"  # Initialize with an empty JSON object
 fi
 
-# Add or modify Python-related settings using jq
+# Add or modify Python-related settings using jq. jq is a bash package to deal with JSON, cf https://jqlang.org/
 # We will keep the comments outside the jq block, as jq doesn't support comments inside JSON.
 jq '. + {
-    "workbench.colorTheme": "Default Dark Modern",  # Set the theme to dark
+    "workbench.colorTheme": "Default Light Modern",  # Set the theme to dark
     "editor.rulers": [80, 100, 120],  # Add specific vertical rulers
     "files.trimTrailingWhitespace": true,  # Automatically trim trailing whitespace
     "files.insertFinalNewline": true,  # Ensure files end with a newline
     "flake8.args": [
         "--max-line-length=100"  # Max line length for Python linting
     ],
-    "[r]": {
-        "editor.formatOnSave": true
+   "ruff.importStrategy": "useBundled",
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+        "source.fixAll": "always"
     },
-    "[python]": {
-        "editor.defaultFormatter": "charliermarsh.ruff",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.fixAll.ruff": "always",
-            "source.organizeImports.ruff": "always"
-        }
-    }
+    "files.autoSave": "onFocusChange",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+
+    "workbench.sideBar.location": "right"
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 
 # Keybindings file
 KEYBINDINGS_FILE="$VSCODE_CONFIG_DIR/keybindings.json"
 
+##### Shortcuts #####
 # Add shortcuts for duplicating, deleting lines, and navigating tabs
 echo '[
     {
@@ -103,7 +112,10 @@ echo '[
     }
 ]' > "$KEYBINDINGS_FILE"
 
+##### Extension #####
 # Colorizes the indentation in front of text
 code-server --install-extension oderwat.indent-rainbow
-# Extensive markdown integration
-code-server --install-extension yzhang.markdown-all-in-one
+
+# Other extensions
+# Extensive markdown integration : yzhang.markdown-all-in-one
+code-server --install-extension $1
