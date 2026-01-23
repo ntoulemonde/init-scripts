@@ -73,7 +73,7 @@ jq '. + {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
 
-    "workbench.sideBar.location": "right"
+    "workbench.sideBar.location": "left"
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 
 # Keybindings file
