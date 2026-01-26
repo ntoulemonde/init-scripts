@@ -110,6 +110,12 @@ echo '[
     {
         "key": "ctrl+numpad4",
         "command": "workbench.files.action.focusFilesExplorer"
+    }, 
+    {
+        "key": "ctrl+alt+i",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus",
+        "args": {"snippet": "```{python}\n$0\n```"}
     }
 ]' > "$KEYBINDINGS_FILE"
 
