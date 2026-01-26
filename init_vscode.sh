@@ -48,14 +48,20 @@ fi
 
 # Add or modify Python-related settings using jq. jq is a bash package to deal with JSON, cf https://jqlang.org/
 # We will keep the comments outside the jq block, as jq doesn't support comments inside JSON.
+# "workbench.colorTheme": Set the theme to dark
+# "workbench.startupEditor": Remove start page 
+# "workbench.secondarySideBar.defaultVisibility": remove side bar for AI
+# "files.trimTrailingWhitespace":Automatically trim trailing whitespace
+# "files.insertFinalNewline":Ensure files end with a newline
+# "editor.rulers" : Add specific vertical rulers
 jq '. + {
-    "workbench.colorTheme": "Default Light Modern",  # Set the theme to dark
-    "workbench.startupEditor": none,  # Remove start page 
-    "workbench.secondarySideBar.defaultVisibility": "hidden",  # remove side bar for AI
-    "files.trimTrailingWhitespace": true,  # Automatically trim trailing whitespace
-    "files.insertFinalNewline": true,  # Ensure files end with a newline
+    "workbench.colorTheme": "Default Light Modern",  
+    "workbench.startupEditor": none,  
+    "workbench.secondarySideBar.defaultVisibility": "hidden",  
+    "files.trimTrailingWhitespace": true,  
+    "files.insertFinalNewline": true,  
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.rulers": [80, 100, 120],  # Add specific vertical rulers
+    "editor.rulers": [80, 100, 120], 
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file",
