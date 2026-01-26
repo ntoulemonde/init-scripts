@@ -50,14 +50,12 @@ fi
 # We will keep the comments outside the jq block, as jq doesn't support comments inside JSON.
 jq '. + {
     "workbench.colorTheme": "Default Light Modern",  # Set the theme to dark
-    "editor.rulers": [80, 100, 120],  # Add specific vertical rulers
+    "workbench.startupEditor": none,  # Remove start page 
+    "workbench.secondarySideBar.defaultVisibility": "hidden",  # remove side bar for AI
     "files.trimTrailingWhitespace": true,  # Automatically trim trailing whitespace
     "files.insertFinalNewline": true,  # Ensure files end with a newline
-    "flake8.args": [
-        "--max-line-length=100"  # Max line length for Python linting
-    ],
-   "ruff.importStrategy": "useBundled",
-    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.rulers": [80, 100, 120],  # Add specific vertical rulers
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file",
@@ -66,13 +64,16 @@ jq '. + {
         "source.fixAll": "always"
     },
     "files.autoSave": "onFocusChange",
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    "[R]": {
+        "editor.defaultFormatter": "REditorSupport.r"
     },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    "[python]":{
+        "editor.defaultFormatter": "charliermarsh.ruff"
     },
-
+    "flake8.args": [
+        "--max-line-length=100"  # Max line length for Python linting
+    ],
+    "ruff.importStrategy": "useBundled",
     "workbench.sideBar.location": "left"
 }' "$SETTINGS_FILE" > "$SETTINGS_FILE.tmp" && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 
@@ -115,6 +116,9 @@ echo '[
 ##### Extension #####
 # Colorizes the indentation in front of text
 code-server --install-extension oderwat.indent-rainbow
+
+# Prettier code formatter, cf https://prettier.io/
+code-server --install-extension esbenp.prettier-vscode
 
 # Other extensions
 # Extensive markdown integration : yzhang.markdown-all-in-one
