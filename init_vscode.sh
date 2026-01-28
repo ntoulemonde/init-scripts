@@ -56,7 +56,7 @@ fi
 # "editor.rulers" : Add specific vertical rulers
 jq '. + {
     "workbench.colorTheme": "Default Light Modern",  
-    "workbench.startupEditor": none,  
+    "workbench.startupEditor": "terminal",  
     "workbench.secondarySideBar.defaultVisibility": "hidden",  
     "files.trimTrailingWhitespace": true,  
     "files.insertFinalNewline": true,  
